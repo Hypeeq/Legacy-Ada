@@ -2,35 +2,49 @@ V "GNAT Lib v12"
 M P W=b
 A -Wall
 A -gnatwa
-P ZX
+P SS ZX
 
 RN
 RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
 RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
 RV NO_DYNAMIC_SIZED_OBJECTS
 RV NO_IMPLEMENTATION_PRAGMAS
 
-U cal%b			cal.adb			014c1cb2 NE OO SU
+U cal%b			cal.adb			2565b749 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
 Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
 Z system.concat_2%s	s-conca2.adb		s-conca2.ali
 Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 
 D ada.ads		20220819080952 76789da1 ada%s
+D a-charac.ads		20220819080952 2d3ec45b ada.characters%s
+D a-chlat1.ads		20220819080952 e0d72e76 ada.characters.latin_1%s
 D a-except.ads		20220819080952 2a7d8d70 ada.exceptions%s
 D a-inteio.ads		20220819080952 f64b89a4 ada.integer_text_io%s
 D a-ioexce.ads		20220819080952 40018c65 ada.io_exceptions%s
 D a-stream.ads		20220819080952 119b8fb3 ada.streams%s
 D a-string.ads		20220819080952 90ac6797 ada.strings%s
+D a-strfix.ads		20220819080952 a4e33eef ada.strings.fixed%s
+D a-strmap.ads		20220819080952 233229cd ada.strings.maps%s
+D a-strsea.ads		20220819080952 6f718bb4 ada.strings.search%s
 D a-sttebu.ads		20220819080952 18209c64 ada.strings.text_buffers%s
 D a-stuten.ads		20220819080952 33c54060 ada.strings.utf_encoding%s
 D a-tags.ads		20220819080952 9eaa38c6 ada.tags%s
 D a-textio.ads		20220819080952 deada98a ada.text_io%s
 D a-tiinio.ads		20220819080952 390edddb ada.text_io.integer_io%s
 D a-unccon.ads		20220819080952 0e9b276f ada.unchecked_conversion%s
-D cal.adb		20250303061405 29aa3c9c cal%b
+D cal.adb		20250303065924 a960a988 cal%b
 D interfac.ads		20220819080952 edec285f interfaces%s
 D i-cstrea.ads		20220819080952 e53d8b8e interfaces.c_streams%s
 D system.ads		20220819080952 a2da961d system%s
@@ -53,104 +67,139 @@ D s-unstyp.ads		20220819080952 fa2a7f59 system.unsigned_types%s
 D s-wchcon.ads		20220819080952 d9032363 system.wch_con%s
 D unchconv.ads		20220819080952 ca2f9e18 unchecked_conversion%s
 G a e
-G c Z b b [cal standard 4 11 none]
+G c Z b b [cal standard 5 11 none]
 X 1 ada.ads
-16K9*Ada 20e8 13|1r6 1r23 2r6 2r31
-X 3 a-inteio.ads
-18K13*Integer_Text_IO[11|46] 13|2w10 2r35
-X 10 a-textio.ads
-58K13*Text_IO 727e16 13|1w10 1r27
+16K9*Ada 20e8 18|1r6 1r23 2r6 2r31 3r6 3r29 123r63
+X 5 a-inteio.ads
+18K13*Integer_Text_IO[16|46] 18|2w10 2r35
+X 8 a-string.ads
+16K13*Strings 35e16 18|3r10 3r33 123r67
+33n24*Left{33E9} 18|123r75
+X 9 a-strfix.ads
+49K21*Fixed 1397e22 18|3w18 3r41
+1130V13*Trim{string} 18|123s37
+X 15 a-textio.ads
+58K13*Text_IO 727e16 18|1w10 1r27
+66P9*File_Type 18|131r14
+68n23*In_File{68E9} 18|139r21
 88I12*Field{integer}
-263U14*New_Line 13|194s7 204s7 232s10 244s7 250s10
-391U14*Put 13|200s13 225s22
-464U14*Put 13|93s10 189s16 190s16 199s13 202s10 218s22 222s25 230s13
-507U14*Put_Line 13|99s13 108s7 240s10 242s10
-X 11 a-tiinio.ads
-59U14*Get 13|94s10[3|18] 109s7[3|18]
-80U14*Put 13|224s22[3|18]
-82i7 Width{10|88I12} 13|224r33[3|18]
-X 13 cal.adb
-4U11*Cal 4b11 263l5 263t8
-6I9 Day_Index<short_short_integer> 16r44 21r34 128r19 137r19 198r19 212r22
-7I9 Week_Index<short_short_integer> 16r32 127r16 136r16 210r16
-8I9 Month_Number<short_short_integer> 20r36 60r39 61r30 118r29 158r16 189r44
-9I9 Month_Row_Index<short_short_integer> 17r31 160r28 160r47 169r39 208r37
-. 247r18
-10I9 Month_Col_Index<short_short_integer> 17r48 161r28 161r47 184r18 197r18
-. 211r21
-13E9 Language_Type 13e43 27r20 88r81 169r82 237r69
-13n27 English{13E9} 27r37 113r18
-13n36 French{13E9} 111r18 175r17 239r17
-16A9 Month_Matrix(natural)<7I9><6I9> 17r68 119r41
-17A9 Year_Matrix(16A9)<9I9><10I9> 26r20 154r43 208r68 237r49
-20A9 Month_Name_Array(string)<8I9> 30r30 35r30 171r21
-21A9 Day_Name_Array(string)<6I9> 40r28 43r28 172r19
-24i4 Year_To_Print{integer} 256m16 259r18 262r15
-25i4 First_Day_Of_Year{integer} 256m31 259r33
-26a4 Year_Calendar{17A9} 259m52 262r30
-27e4 User_Language{13E9} 256m50 262r45
-30a4 Month_Names_EN{20A9} 179r25
-35a4 Month_Names_FR{20A9} 176r25
-40a4 Day_Names_EN{21A9} 180r23
-43a4 Day_Names_FR{21A9} 177r23
-47V13 IsValid{boolean} 47b13 47>21 51l8 51t15 96s13
-47i21 Year{integer} 50r14
-54V13 LeapYear{boolean} 54b13 54>22 57l8 57t16 64s29 80s14
-54i22 Year{integer} 56r15 56r39 56r66
-60V13 NumDaysInMonth{integer} 60b13 60>28 60>53 69l8 69t22 133s21 149s33
-60i28 Month{8I9} 64r10 67r22
-60i53 Year{integer} 64r38
-61a7 Days(integer) 67r17
-72V13 Calculate_First_Day{integer} 72b13 72>33 85l8 85t27 104s19
-72i33 Year{integer} 73r31 80r23
-73i7 Y{integer} 77r23 77r28 77r38 77r50
-74i7 Result{integer} 77m7 81m10 81r21 84r14
-88U14 ReadCalInfo 88b14 88<26 88<46 88<70 115l8 115t19 256s4
-88i26 Year{integer} 94m14 96r21 104r39
-88i46 FirstDay{integer} 104m7
-88e70 Lang{13E9} 111m10 113m10
-89b7 Valid_Year{boolean} 92r17 97m13
-90i7 Lang_Choice{integer} 109m11 110r10
-118U14 Fill_Month 118b14 118>25 118>43 119<25 119=55 150l8 150t18 163s13
-118i25 M{8I9} 133r36 149r48
-118i43 Y{integer} 133r39 149r51
-119a25 Month_Cal{16A9} 129m13 140m16 142m16
-119i55 First_Day{integer} 124r48 149m7 149r21
-120i7 Month_Days{integer} 133m7 139r29
-121i7 Day_Count{integer} 139r17 142r35 143m16 143r29
-124i7 Internal_First_Day{integer} 138r45
-127i11 W{7I9} 129r23
-128i14 D{6I9} 129r26
-136i11 W{7I9} 138r17 140r26 142r26
-137i14 D{6I9} 138r40 140r29 142r29
-153U14 BuildCalendar 153b14 153>28 153>44 154<28 166l8 166t21 259s4
-153i28 Y{integer} 163r27
-153i44 First_Day{integer} 155r38
-154a28 Calendar{17A9} 163m30 163r30
-155i7 Current_First_Day{integer} 163m50 163r50
-158i11 M{8I9} 160r73 161r73 163r24
-160i13 Row{9I9} 163r39
-161i13 Col{10I9} 163r44
-169U14 PrintRowHeading 169b14 169>30 169>56 169>72 205l8 205t23 248s10
-169i30 Row{9I9} 186r46
-169i56 Y{integer} 170r28
-169e72 Lang{13E9} 175r10
-171a7 Month_Names{20A9} 176m10 179m10 189r32
-172a7 Day_Names{21A9} 177m10 180m10 199r17
-184i11 Col{10I9} 186r70
-186i13 M{integer} 188r16 189r57
-197i11 Col{10I9}
-198i14 D{6I9} 199r27
-208U14 PrintRowMonth 208b14 208>28 208>54 234l8 234t21 249s10
-208i28 Row{9I9} 214r56
-208a54 Calendar{17A9} 214r47
-210i11 W{7I9} 214r66
-211i14 Col{10I9} 214r61
-212i17 D{6I9} 214r69
-214i19 Value{natural} 216r22 221r25 224r26
-237U14 Print_Year 237b14 237>25 237>38 237>62 252l8 252t18 262s4
-237i25 Y{integer} 240r44 242r43 248r31
-237a38 Calendar{17A9} 249r29
-237e62 Lang{13E9} 239r10 248r34
-247i11 Row{9I9} 248r26 249r24
+113U14*Open 18|139s10
+128U14*Close 18|166s10 174s16
+165V13*Is_Open{boolean} 18|173s16
+263U14*New_Line 18|194s10 196s7 276s7 286s7 314s10 325s7 331s10
+311V13*End_Of_File{boolean} 18|141s20
+391U14*Put 18|282s13 307s22
+464U14*Put 18|98s10 181s10 190s16 271s16 272s16 281s13 284s10 300s22 304s25
+. 312s13
+470U14*Get_Line 18|142s13
+507U14*Put_Line 18|104s13 112s7 169s13 172s13
+543X4*Name_Error 18|168r15
+X 16 a-tiinio.ads
+59U14*Get 18|99s10[5|18] 113s7[5|18]
+80U14*Put 18|306s22[5|18]
+82i7 Width{15|88I12} 18|306r33[5|18]
+X 18 cal.adb
+5U11*Cal 5b11 344l5 344t8
+7I9 Day_Index<short_short_integer> 17r44 22r34 210r19 219r19 280r19 294r22
+8I9 Week_Index<short_short_integer> 17r32 209r16 218r16 292r16
+9I9 Month_Number<short_short_integer> 21r36 65r39 66r30 200r29 240r16 271r44
+10I9 Month_Row_Index<short_short_integer> 18r31 242r28 242r47 251r39 290r37
+. 328r18
+11I9 Month_Col_Index<short_short_integer> 18r48 243r28 243r47 266r18 279r18
+. 293r21
+14E9 Language_Type 14e43 28r20 93r81 251r82 319r69
+14n27 English{14E9} 28r37 117r18
+14n36 French{14E9} 115r18 257r17
+17A9 Month_Matrix(natural)<8I9><7I9> 18r68 201r41
+18A9 Year_Matrix(17A9)<10I9><11I9> 27r20 236r43 290r68 319r49
+21A9 Month_Name_Array(string)<9I9> 35r30 40r30 253r21
+22A9 Day_Name_Array(string)<7I9> 45r28 48r28 254r19
+25i4 Year_To_Print{integer} 337m16 340r18 343r15
+26i4 First_Day_Of_Year{integer} 337m31 340r33
+27a4 Year_Calendar{18A9} 340m52 343r30
+28e4 User_Language{14E9} 337m50 343r45
+31N4 Banner_Height 127r45 149r35 180r26
+32N4 Banner_Width 127r73 152r44 155r49
+35a4 Month_Names_EN{21A9} 261r25
+40a4 Month_Names_FR{21A9} 258r25
+45a4 Day_Names_EN{22A9} 262r23
+48a4 Day_Names_FR{22A9} 259r23
+52V13 IsValid{boolean} 52b13 52>21 56l8 56t15 101s13
+52i21 Year{integer} 55r14
+59V13 LeapYear{boolean} 59b13 59>22 62l8 62t16 69s29 85s14
+59i22 Year{integer} 61r15 61r39 61r66
+65V13 NumDaysInMonth{integer} 65b13 65>28 65>53 74l8 74t22 215s21 231s33
+65i28 Month{9I9} 69r10 72r22
+65i53 Year{integer} 69r38
+66a7 Days(integer) 72r17
+77V13 Calculate_First_Day{integer} 77b13 77>33 90l8 90t27 109s19
+77i33 Year{integer} 78r31 85r23
+78i7 Y{integer} 82r23 82r28 82r38 82r50
+79i7 Result{integer} 82m7 86m10 86r21 89r14
+93U14 ReadCalInfo 93b14 93<26 93<46 93<70 119l8 119t19 337s4
+93i26 Year{integer} 99m14 101r21 109r39
+93i46 FirstDay{integer} 109m7
+93e70 Lang{14E9} 115m10 117m10
+94b7 Valid_Year{boolean} 97r17 102m13
+95i7 Lang_Choice{integer} 113m11 114r10
+122U14 Banner 122b14 122>21 122>40 197l8 197t14 322s7
+122i21 Year{integer} 123r56
+122i40 Indent{integer} 124r35
+123a7 Year_Str{string} 184r19 187r58
+124a7 Spaces{string} 181r14
+127A12 Digit_Pattern(string)<integer><integer> 128r24
+128a7 Digit_Patterns{127A12} 160m19 190r20
+131p7 File{15|66P9} 139m15 139r15 141r32 142r22 166m16 166r16 173r24 174m22
+. 174r22
+132a7 Line{string} 142m28 145r35 145r59 145r83 147r47 156r41
+133i7 Last{natural} 142m34 145r16 155r43
+134i7 Current_Digit{integer} 147m16 160r34
+135i7 Current_Line{integer} 148m16 149r19 160r49 161m19 161r35
+152a19 Pattern_Line{string} 156m22 160r66
+155i23 I{integer} 156r35 156r46
+180i11 Line_Num{integer} 190r42
+184i14 I{integer} 187r67
+187i16 Digit{integer} 190r35
+200U14 Fill_Month 200b14 200>25 200>43 201<25 201=55 232l8 232t18 245s13
+200i25 M{9I9} 215r36 231r48
+200i43 Y{integer} 215r39 231r51
+201a25 Month_Cal{17A9} 211m13 222m16 224m16
+201i55 First_Day{integer} 206r48 231m7 231r21
+202i7 Month_Days{integer} 215m7 221r29
+203i7 Day_Count{integer} 221r17 224r35 225m16 225r29
+206i7 Internal_First_Day{integer} 220r45
+209i11 W{8I9} 211r23
+210i14 D{7I9} 211r26
+218i11 W{8I9} 220r17 222r26 224r26
+219i14 D{7I9} 220r40 222r29 224r29
+235U14 BuildCalendar 235b14 235>28 235>44 236<28 248l8 248t21 340s4
+235i28 Y{integer} 245r27
+235i44 First_Day{integer} 237r38
+236a28 Calendar{18A9} 245m30 245r30
+237i7 Current_First_Day{integer} 245m50 245r50
+240i11 M{9I9} 242r73 243r73 245r24
+242i13 Row{10I9} 245r39
+243i13 Col{11I9} 245r44
+251U14 PrintRowHeading 251b14 251>30 251>56 251>72 287l8 287t23 329s10
+251i30 Row{10I9} 268r46
+251i56 Y{integer} 252r28
+251e72 Lang{14E9} 257r10
+253a7 Month_Names{21A9} 258m10 261m10 271r32
+254a7 Day_Names{22A9} 259m10 262m10 281r17
+266i11 Col{11I9} 268r70
+268i13 M{integer} 270r16 271r57
+279i11 Col{11I9}
+280i14 D{7I9} 281r27
+290U14 PrintRowMonth 290b14 290>28 290>54 316l8 316t21 330s10
+290i28 Row{10I9} 296r56
+290a54 Calendar{18A9} 296r47
+292i11 W{8I9} 296r66
+293i14 Col{11I9} 296r61
+294i17 D{7I9} 296r69
+296i19 Value{natural} 298r22 303r25 306r26
+319U14 Print_Year 319b14 319>25 319>38 319>62 333l8 333t18 343s4
+319i25 Y{integer} 322r14 329r31
+319a38 Calendar{18A9} 330r29
+319e62 Lang{14E9} 329r34
+328i11 Row{10I9} 329r26 330r24
 

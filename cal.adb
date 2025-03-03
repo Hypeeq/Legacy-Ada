@@ -1,5 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+with Ada.Strings.Fixed; use Ada.Strings.Fixed;
 
 procedure Cal is
    -- Types for calendar representation
@@ -25,6 +26,10 @@ procedure Cal is
    First_Day_Of_Year : Integer;
    Year_Calendar : Year_Matrix;
    User_Language : Language_Type := English;  -- Default to English
+   
+   -- Banner constants
+   Banner_Height : constant := 10;
+   Banner_Width : constant := 8;
    
    -- Month and day names
    Month_Names_EN : constant Month_Name_Array := 
@@ -103,7 +108,6 @@ procedure Cal is
       -- Calculate the first day of the year using the formula
       FirstDay := Calculate_First_Day(Year);
     
-      
       -- Ask for language preference
       Put_Line("Select language (1 for English, 2 for French): ");
       Get(Lang_Choice);
@@ -113,6 +117,84 @@ procedure Cal is
          Lang := English;
       end if;
    end ReadCalInfo;
+   
+   -- Procedure to display a large banner with the year
+   procedure Banner(Year : in Integer; Indent : in Integer) is
+      Year_Str : constant String := Trim(Integer'Image(Year), Ada.Strings.Left);
+      Spaces : constant String(1..Indent) := (others => ' ');
+      
+      -- Array to store digit patterns read from file
+      type Digit_Pattern is array (0..9, 1..Banner_Height) of String(1..Banner_Width);
+      Digit_Patterns : Digit_Pattern; -- Changed from 'Digits' to 'Digit_Patterns' to avoid reserved word
+      
+      -- File handling variables
+      File : File_Type;
+      Line : String(1..100);  -- Assuming no line is longer than 100 chars
+      Last : Natural;
+      Current_Digit : Integer := 0;
+      Current_Line : Integer := 1;
+   begin
+      -- Read banner data from file
+      begin
+         Open(File, In_File, "banner.txt"); -- Changed from banner_data.txt to banner.txt
+         
+         while not End_Of_File(File) loop
+            Get_Line(File, Line, Last);
+            
+            -- Check for digit marker lines (digit followed by colon)
+            if Last >= 2 and then Line(1) >= '0' and then Line(1) <= '9' and then Line(2) = ':' then
+               -- Start of a new digit definition
+               Current_Digit := Character'Pos(Line(1)) - Character'Pos('0');
+               Current_Line := 1;
+            elsif Current_Line <= Banner_Height then
+               -- Store the line for the current digit
+               declare
+                  Pattern_Line : String(1..Banner_Width) := (others => ' ');
+               begin
+                  -- Copy as much of the line as fits in Banner_Width
+                  for I in 1..Integer'Min(Last, Banner_Width) loop
+                     Pattern_Line(I) := Line(I);
+                  end loop;
+                  
+                  -- Store the pattern
+                  Digit_Patterns(Current_Digit, Current_Line) := Pattern_Line;
+                  Current_Line := Current_Line + 1;
+               end;
+            end if;
+         end loop;
+         
+         Close(File);
+      exception
+         when Name_Error =>
+            Put_Line("Error: banner.txt not found!");
+            return;
+         when others =>
+            Put_Line("Error reading banner data!");
+            if Is_Open(File) then
+               Close(File);
+            end if;
+            return;
+      end;
+      
+      -- Print each line of the banner
+      for Line_Num in 1..Banner_Height loop
+         Put(Spaces);  -- Print indent
+         
+         -- Print each digit
+         for I in Year_Str'Range loop
+            -- Convert character to integer
+            declare
+               Digit : constant Integer := Character'Pos(Year_Str(I)) - Character'Pos('0');
+            begin
+               -- Print the banner line for this digit
+               Put(Digit_Patterns(Digit, Line_Num));
+            end;
+         end loop;
+         
+         New_Line;
+      end loop;
+      New_Line;
+   end Banner;
    
    -- Procedure to fill a month matrix
    procedure Fill_Month(M : Month_Number; Y : Integer; 
@@ -236,11 +318,10 @@ procedure Cal is
    -- Procedure to print the entire year in a 4x3 calendar format
    procedure Print_Year(Y : Integer; Calendar : Year_Matrix; Lang : Language_Type) is
    begin
-      if Lang = French then
-         Put_Line("Annee " & Integer'Image(Y));
-      else
-         Put_Line("Year " & Integer'Image(Y));
-      end if;
+      -- Display the banner for the year
+      Banner(Y, 20);  -- Indent by 20 spaces for centering
+      
+     
       New_Line;
 
       -- Print each row of months (4 rows, each with 3 months)
